@@ -7,30 +7,51 @@ interface Comment {
     name: string;
     email: string;
     body: string;
+
 }
 
 
 const FetchAxios: React.FC = () => {
     const [comment, setComment] = useState<Comment[]>([])
+    const [isClicked, setIsClicked] = useState(false)
 
-    axios.get('https://jsonplaceholder.typicode.com/comments')
-        .then(res => {
-            const data: Comment[] = res.data.slice(0, 10)
-            setComment(data)
-        })
-        .catch(err => console.log(err))
+    const toggleVisibility = () => {
+        setIsClicked(prevState => {
+            if (prevState) {
+                setComment([]);
+            } else {
+                displayComments();
+            }
+            return !prevState;
+        });
+    };
 
+
+    const displayComments = () => {
+
+        axios.get('https://jsonplaceholder.typicode.com/comments')
+            .then(res => {
+                const data: Comment[] = res.data.slice(0, 10)
+                setComment(data)
+            })
+            .catch(err => console.log(err))
+    }
     return (
         <>
-            <ul>
-                {comment.map((comment: Comment, index: number) => (
+            <button onClick={toggleVisibility} className="">{isClicked ? 'Hide Comments' : 'Display Comments'}</button>
+            {isClicked && (
+                <ul>
+                    {comment.map((comment: Comment, index: number) => (
+                        <div key={index} className="">
+                            <li>{comment.id} | {comment.name} </li>
+                            <p>{comment.body}</p>
+                        </div>
 
-                    <div key={index} className="git ">
-                        <li>{comment.id} | {comment.name} </li>
-                        <p>{comment.body}</p>
-                    </div>
-                ))}
-            </ul>
+                    ))}
+
+                </ul>
+            )
+            }
         </>
     );
 };
