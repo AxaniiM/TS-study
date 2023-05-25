@@ -1,25 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
+import { HeaderComponent } from './HeaderComponent';
+import navData from './data-object.json'
+import FetchData from './FetchData';
+import FetchAxios from './FetchDataAXIOS';
+
 import './App.css';
 
-function App() {
+interface NavigationItem {
+  id: number;
+  name: string;
+  technicalName: string;
+  link: string;
+  subMenu: NavigationItem[]
+}
+
+const App: React.FC = () => {
+  const parsedNavData: NavigationItem[] = navData.navDataJSON.map((item: any) => {
+    if (item.subMenu) {
+      return {
+        id: item.id,
+        name: item.name,
+        link: item.link,
+        subMenu: item.subMenu.map((subItem: any) => ({
+          id: subItem.id,
+          name: subItem.name,
+          link: subItem.link,
+        })),
+      };
+    }
+    return item;
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <HeaderComponent navData={parsedNavData}/>
+      <FetchData />
+      <FetchAxios />
+
+    </>
   );
 }
 

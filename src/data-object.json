@@ -1,0 +1,57 @@
+{
+    "navDataJSON": [
+     {
+        "id": 1,
+        "name": "HOME",
+        "technicalName": "home",
+        "link": "/"
+      },
+      {
+        "id": 2,
+        "name": "ABOUT US",
+        "technicalName": "about",
+        "link": "/about"
+      },
+      {
+        "id": 3,
+        "name": "SERVICES",
+        "technicalName": "services",
+        "link": "/services",
+        "subMenu": [
+          {
+            "id": 4,
+            "name": "TUT",
+            "link": "/services/tut"
+          },
+          {
+            "id": 5,
+            "name": "Asalam Aleikum",
+            "link": "/services/tat"
+          },
+          {
+            "id": 6,
+            "name": "Walaikum assalam",
+            "link": "/services/tat"
+          },
+          {
+            "id": 7,
+            "name": "Zdesi bil PETYA",
+            "link": "/services/tat"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "PRODUCTS",
+        "technicalName": "products",
+        "link": "/products"
+      },
+      {
+        "id": 9,
+        "name": "CONTACT",
+        "technicalName": "contact",
+        "link": "/contact"
+      }
+    ]
+  }
+  
