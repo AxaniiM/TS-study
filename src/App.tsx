@@ -1,8 +1,8 @@
 import React from 'react';
-import { HeaderComponent } from './HeaderComponent';
+import { HeaderComponent } from './Components/HeaderComponent';
 import navData from './data-object.json'
-import FetchData from './FetchData';
-import FetchAxios from './FetchDataAXIOS';
+import PostContainer from './Components/PostDisplay';
+
 
 import './App.css';
 
@@ -34,9 +34,7 @@ const App: React.FC = () => {
   return (
     <>
       <HeaderComponent navData={parsedNavData}/>
-      <FetchData />
-      <FetchAxios />
-
+      <PostContainer />
     </>
   );
 }
